@@ -29,8 +29,14 @@ bool Dog::changeStrength(int amt) {
 * If the dog object's strength is 0 or less, it calls the die method.
 * It returns true if the strength is still >0 and false otherwise.
 */
+
+    // I considered having this function accept a letter
+    // To mark whether the dog was stepping on food or trap or normal space or wall
+    // And then the strength change would be determined in here and not in MoveDog()
+    // But the same reason as in MoveDog(), longer code has fewer bugs
+
+
 	strength += amt; // changes strength by the amount
-    printDog();
 
     if (strength > 0) { // if the dog is alive
         return true;
@@ -89,16 +95,19 @@ void Dog::won() {
 
 // praise messages written by Matthew DeMark
 
-	string praise[10] = {"Against all odds, through the twisted horrors of the forest, YOU prevailed! The pig lives, and so does your legacy!",
-"A hero among mortals! The pig has seen the other side of the forest, all thanks to your masterful guidance!",
-"The legends will sing of this day! You, the protector of swine, have defied fate itself!",
-"Not all heroes wear capes. Some just have an unshakable will… and a pig. You did it!",
-"The darkness of the forest quivered before you. The pig trotted to safety. And now? You are a champion!",
-"They doubted you. They mocked you. But now, the pig walks free, and you stand victorious!",
-"Through peril, through chaos, through near-certain doom… you delivered. The pig lives! The world rejoices!",
-"The evil forest? Defeated. The pig? Saved. You? An unstoppable force of nature.",
-"You saw danger. You laughed in its face. You carried that sweet little piglet to freedom like a true warrior!",
-"A standing ovation. A roaring crowd. A pig that will tell tales of its legendary savior. You did it, and you did it gloriously!"};
+	string praise[10] = {"Against all odds, through the twisted horrors of the forest, YOU prevailed! The dog lives, and so does your legacy!",
+"A hero among mortals! The dog has seen the other side of the forest, all thanks to your masterful guidance!",
+"The legends will sing of this day! You, the protector of canids, have defied fate itself!",
+"Not all heroes wear capes. Some just have an unshakable will… and a dog. You did it!",
+"The darkness of the forest quivered before you. The dog ambled to safety. And now? You are a champion!",
+"They doubted you. They mocked you. But now, the dog walks free, and you stand victorious!",
+"Through peril, through chaos, through near-certain doom… you delivered. The dog lives! The world rejoices!",
+"The evil forest? Defeated. The dog? Saved. You? An unstoppable force of nature.",
+"You saw danger. You laughed in its face. You carried that sweet little doggy to freedom like a true warrior!",
+"A standing ovation. A roaring crowd. A dog that will tell tales of its legendary savior. You did it, and you did it gloriously!"};
+
+    srand(time(0));
+    cout << praise[rand() % 10] << endl; 			// prints a praising line
 
     // spatula designed by Matthew DeMark
 

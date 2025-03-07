@@ -408,7 +408,7 @@ void Board::printBoard() {
 			} // if
 
         	for(int j = 0; j < sizeof(board[0]); j++) {
-        		/*
+
         		if (board[i][j] == 'T') {
         			if (!debug) {
         				cout <<"  ";						// traps only visible is debug is true
@@ -416,8 +416,8 @@ void Board::printBoard() {
         		} else {
         			cout << board[i][j] << " ";				// prints each value, separated with a space
         		}
-        		*/
-        		cout << board[i][j] << " ";					// uncomment above and delete this later
+
+        													// uncomment above and delete this later
         	} // for
 
 			if (i == dogEnd) {
@@ -657,11 +657,13 @@ bool Board::moveDog(char c) {
 				return mydog.changeStrength(-2);				// 2 strength is deducted for wall break failure
 			} // if
 		} else if (board[mydog.x-1][mydog.y] == 'F') {		// if the dog lands on food
+			cout << "You landed on food. Yummy!" << endl;
 			board[mydog.x-1][mydog.y] = 'D';
 			board[mydog.x][mydog.y] = ' ';
 			mydog.x = mydog.x-1;					// sets new coordinates for the dog
 			return mydog.changeStrength(rand() % 15 + 2);
 		} else if (board[mydog.x-1][mydog.y] == 'T') {		// if the dog lands on trap
+			cout << "You landed on trap. Ouchie!" << endl;
 			board[mydog.x-1][mydog.y] = 'D';
 			board[mydog.x][mydog.y] = ' ';
 			mydog.x = mydog.x-1;					// sets new coordinates for the dog
@@ -685,11 +687,13 @@ bool Board::moveDog(char c) {
 				return mydog.changeStrength(-2);				// 2 strength is deducted for wall break failure
 			} // if
 		} else if (board[mydog.x+1][mydog.y] == 'F') {		// if the dog lands on food
+			cout << "You landed on food. Yummy!" << endl;
 			board[mydog.x+1][mydog.y] = 'D';
 			board[mydog.x][mydog.y] = ' ';
 			mydog.x = mydog.x+1;					// sets new coordinates for the dog
 			return mydog.changeStrength(rand() % 15 + 2);
 		} else if (board[mydog.x+1][mydog.y] == 'T') {		// if the dog lands on trap
+			cout << "You landed on trap. Ouchie!" << endl;
 			board[mydog.x+1][mydog.y] = 'D';
 			board[mydog.x][mydog.y] = ' ';
 			mydog.x = mydog.x+1;					// sets new coordinates for the dog
@@ -701,22 +705,28 @@ bool Board::moveDog(char c) {
 		if (board[mydog.x][mydog.y-1] == ' ') {		// checks for open space
 			board[mydog.x][mydog.y-1] = 'D';		// the dog moves into the space
 			board[mydog.x][mydog.y] = ' ';			// the space is blanked
+			mydog.y = mydog.y-1;					// sets new coordinates for the dog
 			return mydog.changeStrength(-2);
 		} else if (board[mydog.x][mydog.y-1] == '_' || board[mydog.x][mydog.y-1] == '|') {  // if there is a wall
 			if (wallBreak()) {								// if the user decides to break the wall
 				board[mydog.x][mydog.y-1] = 'D';
 				board[mydog.x][mydog.y] = ' ';
+				mydog.y = mydog.y-1;					// sets new coordinates for the dog
 				return mydog.changeStrength(-6);				// 6 strength is deducted for breaking a wall
 			} else {
 				return mydog.changeStrength(-2);				// 2 strength is deducted for wall break failure
 			} // if
 		} else if (board[mydog.x][mydog.y-1] == 'F') {		// if the dog lands on food
+			cout << "You landed on food. Yummy!" << endl;
 			board[mydog.x][mydog.y-1] = 'D';
 			board[mydog.x][mydog.y] = ' ';
+			mydog.y = mydog.y-1;					// sets new coordinates for the dog
 			return mydog.changeStrength(rand() % 15 + 2);
 		} else if (board[mydog.x][mydog.y-1] == 'T') {		// if the dog lands on trap
+			cout << "You landed on trap. Ouchie!" << endl;
 			board[mydog.x][mydog.y-1] = 'D';
 			board[mydog.x][mydog.y] = ' ';
+			mydog.y = mydog.y-1;					// sets new coordinates for the dog
 			return mydog.changeStrength(-1 * rand() % 15 - 2);
 		}
 	} // if
@@ -725,26 +735,33 @@ bool Board::moveDog(char c) {
 		if (board[mydog.x][mydog.y+1] == ' ') {		// checks for open space
 			board[mydog.x][mydog.y+1] = 'D';		// the dog moves into the space
 			board[mydog.x][mydog.y] = ' ';			// the space is blanked
+			mydog.y = mydog.y+1;					// sets new coordinates for the dog
 			return mydog.changeStrength(-2);
 		} else if (board[mydog.x][mydog.y+1] == '_' || board[mydog.x][mydog.y+1] == '|') {  // if there is a wall
 			if (wallBreak()) {								// if the user decides to break the wall
 				board[mydog.x][mydog.y+1] = 'D';
 				board[mydog.x][mydog.y] = ' ';
+				mydog.y = mydog.y+1;					// sets new coordinates for the dog
 				return mydog.changeStrength(-6);				// 6 strength is deducted for breaking a wall
 			} else {
 				return mydog.changeStrength(-2);				// 2 strength is deducted for wall break failure
 			} // if
 		} else if (board[mydog.x][mydog.y+1] == 'F') {		// if the dog lands on food
+			cout << "You landed on food. Yummy!" << endl;
 			board[mydog.x][mydog.y+1] = 'D';
 			board[mydog.x][mydog.y] = ' ';
+			mydog.y = mydog.y+1;					// sets new coordinates for the dog
 			return mydog.changeStrength(rand() % 15 + 2);
 		} else if (board[mydog.x][mydog.y+1] == 'T') {		// if the dog lands on trap
+			cout << "You landed on trap. Ouchie!" << endl;
 			board[mydog.x][mydog.y+1] = 'D';
 			board[mydog.x][mydog.y] = ' ';
+			mydog.y = mydog.y+1;					// sets new coordinates for the dog
 			return mydog.changeStrength(-1 * rand() % 15 - 2);
 		}
 	} // if
 
+	mydog.won();
 	return false;
 
 } // moveDog
@@ -759,9 +776,9 @@ bool Board::wallBreak() {
 	string userIn;
 	cin >> userIn;
 
-	if (userIn == "yes" or userIn == "Y") {
+	if (userIn == "yes" or userIn == "Y" or userIn == "y") {
 		return true;
-	} if (userIn == "no" or userIn == "N") {
+	} if (userIn == "no" or userIn == "N" or userIn == "n") {
 		return false;
 	} // if
 
