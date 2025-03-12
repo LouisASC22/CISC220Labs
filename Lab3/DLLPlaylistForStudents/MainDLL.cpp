@@ -7,12 +7,13 @@
 #include "Song.hpp"
 #include "Song.cpp"
 #include "DNode.hpp"
+#include "DNode.cpp"
 #include <time.h>
 using namespace std;
 
 int main() {
 	srand(time(NULL));
 	//Playlist *list = new Playlist;
-	Playlist *list = new Playlist("ShortListofSongs.txt");
+	// Playlist *list = new Playlist("ShortListofSongs.txt");
 }
 

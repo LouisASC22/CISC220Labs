@@ -50,10 +50,51 @@ using namespace std;
 			}
 	void DLL::makeRandom() {
 		}
-//	int DLL::remove(string s) {
+
+
+int DLL::remove(std::string songName) {					// remove() code taken from DLL slides
+		if (first == nullptr) {
+			std::cout << "List is empty!" << std::endl;
+			return -1; // Return -1 if the list is empty
+		}
+
+		DNode* current = first;							// creates a new node at the beginning of the list
+		int nindex = 0;									// Track index of node
+
+		while (current->next != nullptr) {
+			if (current->song->title == songName) {
+				if (current->prev) {
+					current->prev->next = current->next;
+				} else {
+					first = current->next;
+				}
+
+				if (current->next) {
+					current->next->prev = current->prev;
+				} else {
+					last = current->prev;
+				}
+
+				delete current;							// delete the node
+				return nindex;							// Return the index of the deleted node
+			}
+
+			current = current->next;
+			nindex++;									// iteration in a while loop
+		}
+		return -1;										// Return -1 if the song wasn't found
+	}
 // note that the int returned is the index - this is standard for a remove, but we won't be using it.
-//		}
 
 
-//	DLL::~DLL(){
-//	}
+
+DLL::~DLL() {									// destructor code taken from DLL slides
+		DNode* current = first;					// sets a pointer to the beginning of the list
+		while (current->next != nullptr) {		// iterates through the list and deletes each node
+			DNode* tmp = current;				// current is being used as a tmp2 equivalent
+			current = current->next;
+			delete tmp;							// this is preferred to doing everything with one tmp
+		}
+		first = nullptr; // clears the head and tail assignment
+		last = nullptr;
+	}
