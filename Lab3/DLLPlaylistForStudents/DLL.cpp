@@ -19,10 +19,24 @@ using namespace std;
 		last = n;
 		numSongs=1;
 	}
-	void DLL::push(string n, string a, int m, int s) {  // does what you'd think
-			}
-	Song *DLL::pop() { //does what you'd think
+	void DLL::push(string t, string a, int m, int s) {  // does what you'd think
+		DNode *n = new DNode (t,a,m,s);
+
+        if (first == NULL) {
+          first = n;
+        }
+
+        DNode *last = first;
+        while(last->next != NULL) {
+          last = last->next;
+        }
+
+        last->next = n;
+
+        numSongs++;
 	}
+	// Song *DLL::pop() { //does what you'd think
+	// }
 
 	void DLL::printList() {
 	}
@@ -36,10 +50,10 @@ using namespace std;
 			}
 	void DLL::makeRandom() {
 		}
-	int DLL::remove(string s) {  
+//	int DLL::remove(string s) {
 // note that the int returned is the index - this is standard for a remove, but we won't be using it.
-		}
+//		}
 
 
-	DLL::~DLL(){
-	}
+//	DLL::~DLL(){
+//	}

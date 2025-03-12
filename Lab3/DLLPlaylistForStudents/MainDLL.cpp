@@ -1,6 +1,12 @@
 #include <iostream>
 #include <stdlib.h>
-#include "Playlist.hpp"
+#include "Playlist.hpp" // I still have to include everything for this to work
+#include "Playlist.cpp"
+#include "DLL.hpp"
+#include "DLL.cpp"
+#include "Song.hpp"
+#include "Song.cpp"
+#include "DNode.hpp"
 #include <time.h>
 using namespace std;
 
