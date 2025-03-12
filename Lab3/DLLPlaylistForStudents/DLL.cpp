@@ -39,6 +39,26 @@ using namespace std;
 	// }
 
 	void DLL::printList() {
+		if (first == nullptr) {
+			cout << "Playlist is empty!" << endl;
+			return;
+		}
+
+		DNode* n = first; // Start from the first node
+
+		while (n->next != nullptr) {							// iterates through the nodes
+			if (n->song) {
+				std::cout << n->song->title						// prints the song data
+						  << ", " << n->song->artist			// Matthew DeMark demonstrated this method of
+						  << "................" << n->song->min << ":"	// putting cout on multiple lines
+						  << n->song->sec
+						  << endl;
+			} else {
+				cout << "This playlist entry has no song in it" << endl;
+			}
+
+			n = n->next; // Move to the next node
+		}
 	}
 
 	void DLL::moveUp(string s) {
@@ -52,34 +72,34 @@ using namespace std;
 		}
 
 
-int DLL::remove(std::string songName) {					// remove() code taken from DLL slides
+int DLL::remove(std::string songName) {					// remove() code modified from code in DLL slides
 		if (first == nullptr) {
 			std::cout << "List is empty!" << std::endl;
-			return -1; // Return -1 if the list is empty
+			return -1;									// Return -1 if the list is empty
 		}
 
-		DNode* current = first;							// creates a new node at the beginning of the list
+		DNode* n = first;								// creates a new node at the beginning of the list
 		int nindex = 0;									// Track index of node
 
-		while (current->next != nullptr) {
-			if (current->song->title == songName) {
-				if (current->prev) {
-					current->prev->next = current->next;
+		while (n->next != nullptr) {
+			if (n->song->title == songName) {
+				if (n->prev) {
+					n->prev->next = n->next;
 				} else {
-					first = current->next;
+					first = n->next;
 				}
 
-				if (current->next) {
-					current->next->prev = current->prev;
+				if (n->next) {
+					n->next->prev = n->prev;
 				} else {
-					last = current->prev;
+					last = n->prev;
 				}
 
-				delete current;							// delete the node
+				delete n;								// delete the node
 				return nindex;							// Return the index of the deleted node
 			}
 
-			current = current->next;
+			n = n->next;
 			nindex++;									// iteration in a while loop
 		}
 		return -1;										// Return -1 if the song wasn't found
@@ -88,7 +108,7 @@ int DLL::remove(std::string songName) {					// remove() code taken from DLL slid
 
 
 
-DLL::~DLL() {									// destructor code taken from DLL slides
+DLL::~DLL() {									// destructor code modified from code in DLL slides
 		DNode* current = first;					// sets a pointer to the beginning of the list
 		while (current->next != nullptr) {		// iterates through the list and deletes each node
 			DNode* tmp = current;				// current is being used as a tmp2 equivalent
