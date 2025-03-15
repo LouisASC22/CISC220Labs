@@ -7,7 +7,7 @@ using namespace std;
 
 Playlist::Playlist() {
 	list = new DLL();
-	readList("MyListOfSongs.txt");
+	readList("ShortListofSongs.txt");
 	list->printList();
 	cout << endl;
 	interface();
@@ -27,7 +27,7 @@ Playlist::Playlist(string s) {
 //	//possible your push method works, but you won't know for sure until you complete Step 2
 //	//(Below)
 //
-readList(s);  // uncomment this line to test the push method you wrote in the DLL.cpp file.
+   readList(s);  // uncomment this line to test the push method you wrote in the DLL.cpp file.
 //
 //
 //
@@ -50,16 +50,16 @@ readList(s);  // uncomment this line to test the push method you wrote in the DL
 //	La Bamba, Richie Valens ................3:29
 //	Margaritaville, Jimmy Buffett................2:55
 //	*/
-//	//list->printList();  // uncomment out this line to test your printlist method.
+ list->printList();  // uncomment out this line to test your printlist method.
 //
-//	cout << endl;
+	cout << endl;
 ///*****************************************************************************************/
 //	// (5 pts) Step 3:  list->pop();
 	//Write the method list->pop();  This method removes the last node from the list
 //	// and returns the Song object (aka the data in the last node).
 //	// NOTE:  THIS METHOD SHOULD NOT TRAVERSE THE ENTIRE LIST!!!!
 //
-//	//When written, uncomment out the code below.
+	//When written, uncomment out the code below.
 //	list->pop();
 //	list->printList();
 //	list->pop();
@@ -128,7 +128,7 @@ readList(s);  // uncomment this line to test the push method you wrote in the DL
 //	Jonny B Good, Chuck Berry................3:14
 //	Bad Moon Rising, Credence Clearwater Revival................6:O9
 //
-//	Removing: Let it Be, Beatles................3:11
+// Removing: Let it Be, Beatles................3:11
 //
 //	Rock Around The Clock, Bill Haley................3:59
 //	Blueberry Hill, Fats Domino................4:58
@@ -623,7 +623,7 @@ void Playlist::addSong() {
 	stringstream tmp2(secs);
 	int sec = 0;
 	tmp2>>sec;
-		//cout << title<<":::"<<artist<<":::"<<mins<<":::"<<secs<<":::"<<endl;
+	cout << title<<":::"<<artist<<":::"<<mins<<":::"<<secs<<":::"<<endl;
 	if (title.length() >0) {
 		list->push(title, artist, min, sec);
 		list->printList();
@@ -649,33 +649,35 @@ string Playlist::strip(string &s) {
 	return s2;
 
 }
-void Playlist::readList(string f) {
+void Playlist::readList(std::string f) {
 	ifstream file(f.c_str());
-	string songstr;
-	string artist;
-	string title;
-	string mins;
-	string secs;
-	while (!file.eof()) {
-		getline(file,songstr);
-		//cout << songstr<<endl;
-		title = strip(songstr);
-		artist = strip(songstr);
-		mins = strip(songstr);
+	string songstr, artist, title, mins, secs;
+
+	while (!file.eof()) {				// this had to be modified to avoid exit code -1073740940 (0xC0000374)
+		getline(file, songstr);	// I do not know what exit codes mean, I look them up
+		// cout << songstr << endl;
+
+		string tmpStr = songstr;		// storing this in a tmp variable, as stackoverflow told me to
+		title = strip(tmpStr);		// https://stackoverflow.com/questions/52330474/dpdk-vlan-strip-code-using-memcpy-results-in-data-corruption
+		artist = strip(tmpStr);
+		mins = strip(tmpStr);
 		stringstream tmp(mins);
 		int min = 0;
-		tmp>>min;
-		secs = songstr;
+		tmp >> min;
+
+		secs = tmpStr;
 		stringstream tmp2(secs);
 		int sec = 0;
-		tmp2>>sec;
-		//cout << title<<":::"<<artist<<":::"<<mins<<":::"<<secs<<":::"<<endl;
-		if (title.length() >0) {
+		tmp2 >> sec;
+
+		// cout << title << ":::" << artist << ":::" << mins << ":::" << secs << ":::" << endl;
+
+		if (!title.empty()) {
 			list->push(title, artist, min, sec);
 		}
 	}
-	cout <<"*********DONE READING**************************"<<endl<<endl;
-	return;
+
+	cout << "*********DONE READING**************************" << endl;
 }
 
 

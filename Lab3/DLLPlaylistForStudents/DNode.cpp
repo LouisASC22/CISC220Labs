@@ -7,11 +7,12 @@
 #include "DNode.hpp"
 using namespace std;
 
-DNode::DNode(std::string s, std::string a, int lenmin, int lensec) {
-    string name = s;
-    string artist = a;
-    int durationMin = lenmin;
-    int durationSec = lensec;
-    next = nullptr;
-    prev = nullptr;
+DNode::DNode(string t, string a, int lenmin, int lensec) {
+    song = new Song();
+    song->title = t;
+    song->artist = a;
+    song->min = lenmin;
+    song->sec = lensec;
+    next = NULL;
+    prev = NULL;
 };
