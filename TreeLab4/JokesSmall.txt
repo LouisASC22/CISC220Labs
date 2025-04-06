@@ -1,0 +1,14 @@
+Smith	Mary	M	What do you call 8 hobbits?  A Hobbyte!
+Dove	Kacey	J	Why couldn't the sailor learn the alphabet? Because he always got lost at 'C.'
+Jose	Angel	A	how do robots eat pizza?..... one byte at a time
+Vanyi	James	T	What do elves learn in school? The elphabet
+Goldring	Ariel	M	"There are 10 types of people, those who understand binary, and those who don't"
+Campbell	John	P	How do you get a tissue to dance? > Put a little boogie in it
+Walia	Nihaal	S	What do you call a magician who has lost his magic? Ian.
+Smith	Cole	T	What concert costs 45 cents? 50 Cent featuring Nickleback.
+Patel	Haiya	X	"The broom swept them off their feet, but it was the invention of the fan that really blew them away. The vacuum cleaner sucked though"
+Smith	Mary	P	"An opinion without pi is just an onion"
+Baynard	Mandy	D	"An electron is speeding down the highway when a police officer pulls him over. The officer walks up to the car and asks, ""do you know how fast you were going."" The electron replies, ""Yeah, but now I'm lost."""
+
+
+
